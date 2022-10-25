@@ -11,9 +11,15 @@
   display: flex;
 }
 .header__logo {
+  position: relative;
   display: inline-block;
   flex: 1 1 auto;
   user-select: none;
+}
+.header__logo--active svg {
+  color: #000;
+  z-index: 10;
+  transition-duration: 1s;
 }
 .header__nav {
   text-transform: uppercase;
@@ -38,7 +44,7 @@
   border: 1px solid #FFF;
   border-radius: 25px;
   height: 50px;
-  transition-duration: 0.2s;
+  transition-duration: 0.5s;
 }
 .header__btn:hover {
   background-color: #FFF;
@@ -46,8 +52,82 @@
 }
 .header__burger {
   display: none;
-  padding-top: 12px;
+  margin-top: 20px;
   text-align: right;
+  position: relative;
+  width: 35px;
+  height: 24px;
+  z-index: 10;
+  cursor: pointer;
+}
+.header__burger div {
+  background: white;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+}
+.header__burger div:nth-of-type(1) {
+  top: 0;
+  transition-duration: 0.5s;
+}
+.header__burger div:nth-of-type(2) {
+  top: calc(50% - 1px);
+}
+.header__burger div:nth-of-type(3) {
+  bottom: 0;
+  transition-duration: 0.5s;
+}
+
+/* BURGER MENU */
+.burgermenu {
+  position: fixed;
+  top: 0;
+  right: 100%;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: ease 0.5s;
+}
+.burgermenu__nav {
+  text-transform: uppercase;
+  line-height: 50px;
+  font-weight: 400;
+  font-size: 26px;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.burgermenu__nav a {
+  transition-duration: 0.4s;
+}
+.burgermenu__nav a:hover {
+  color: #4B99F1;
+}
+
+.burger-active {
+  right: 0;
+}
+
+.close div {
+  background-color: #000;
+}
+.close div:nth-of-type(1) {
+  top: 4px;
+  transform: rotate(-48deg);
+}
+.close div:nth-of-type(2) {
+  opacity: 0;
+}
+.close div:nth-of-type(3) {
+  bottom: 17px;
+  transform: rotate(45deg);
 }
 
 .header--fixed {
@@ -59,7 +139,6 @@
 
 .clinic {
   height: 100vh;
-  margin-bottom: 150px;
   display: flex;
 }
 .clinic__container {
@@ -128,6 +207,15 @@
   height: 100%;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
 }
+.video__triangle {
+  position: absolute;
+  bottom: -1px;
+  right: 0;
+  width: 100.1%;
+  height: 250px;
+  clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+  background-color: #fff;
+}
 
 .clinic__title-mob {
   display: none;
@@ -151,7 +239,21 @@
 }
 
 .about {
+  padding-top: 150px;
   padding-bottom: 201px;
+  position: relative;
+}
+.about::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50px;
+  width: 420px;
+  z-index: -1;
+  height: 500px;
+  background-image: url(../img/tooth-1.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .about__container {
   display: flex;
@@ -159,10 +261,9 @@
 }
 
 .about__text {
-  position: sticky;
+  position: relative;
   font-weight: 500;
   font-size: 30px;
-  top: 125px;
   line-height: 45px;
   width: 50%;
   flex: 0 0 auto;
@@ -428,7 +529,7 @@
 .team__card p {
   text-align: left;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 16px;
   color: #63717D;
 }
@@ -878,7 +979,7 @@
   }
 }
 /*======= CALL-BACK BTN =========*/
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .call-back {
     display: block !important;
   }
